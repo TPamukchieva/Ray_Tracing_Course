@@ -1,18 +1,25 @@
-//Creating my first ppm file and dividing it into rectangles with pixels of different colors
+//Creating my first ppm file and dividing it into rectangles with pixels of different colors.
+
+/*The idea behind the colours of the rectangles is I tried to imitate the picture we were shown
+of the RGB colours and the colours we can get when mixing them.
+Since there were only 7 colours and I have 9 rectangles, I mixed yellow and red to get orange
+and red and magenta to get the pink colour. Hope you like it :) */
 
 #include <fstream>
 #include <iostream>
 #include <random>
 using namespace std;
 
+//image resolution 
 static const int imageWidth = 1920;
 static const int imageHeight = 1080;
 
-const int row_a = imageHeight / 3;
-const int row_b = 2 * imageHeight / 3;
 
-const int col_a = imageWidth / 3;
-const int col_b = 2 * imageWidth / 3;
+const int row_a = imageHeight / 3;       //pixel number where the second row of rectangles start 
+const int row_b = 2 * imageHeight / 3;   //pixel number where the third row of rectangles start 
+
+const int col_a = imageWidth / 3;        //pixel number where the second column of rectangles start 
+const int col_b = 2 * imageWidth / 3;    //pixel number where the third column of rectangles start 
 
 static const int maxColComp = 255;
 
@@ -25,11 +32,13 @@ int main()
 	ppmFileStream << imageWidth << " " << imageHeight << "\n";
 	ppmFileStream << maxColComp << "\n";
 
+	//generating random numbers between 0 and 255 and 0 and 128 to accomplish the "noise" effect
 	random_device rd1,rd2;
 	mt19937 gen(rd1());
 	mt19937 gen2(rd2());
 	uniform_int_distribution<> distr1(0, 255);
-	uniform_int_distribution<> distr2(0, 128);
+	uniform_int_distribution<> distr2(0, 128); //generating random numbers between 0 and 128 to get 
+											   //the orange colour and the colour between magenta and red
 
 
 
